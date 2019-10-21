@@ -1,0 +1,18 @@
+@import 
+  '../sass/_variables.scss',
+  '../sass/_icon-font-org.scss',
+  '../sass/_jquery.mCustomScrollbar.scss',
+  '../sass/screens/_main-page.scss',
+  '../sass/screens/_listing-page.scss',
+  '../sass/screens/_detail-message.scss';
+
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open sans', Arial, Helvetica, sans-serif;
+}
+.content-wrap {
+  background: $backgroundColor url('../images/pattern-bg.png') no-repeat right top;
+  background-size: 200px;
+}

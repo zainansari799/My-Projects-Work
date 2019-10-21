@@ -1,0 +1,121 @@
+.message-section{
+  padding: 100px 0;
+  max-width: 750px;
+  margin: auto;
+  .message-container{
+    overflow: auto;
+    height: 680px;
+    display: block;
+    .mCSB_scrollTools{
+      .mCSB_draggerRail{
+        background: none;
+      }
+      .mCSB_dragger{
+        .mCSB_dragger_bar{
+          background-color: $scollColor;
+        }
+      }
+    }
+  }
+  .message{
+    border-bottom: 1px solid rgba(112, 112, 112,0.29);
+    margin-top: 30px;
+    &:first-child{
+      margin-top: 0;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+    p.name{
+      font-size: 23px;
+      font-weight: bold;
+      color: $darkColor;
+    }
+    p.designation{
+      font-size: 18px;
+      font-weight: $fontWeightRegular;
+      color: $darkColor;
+    }
+    ul{
+      list-style: none;
+      padding: 0;
+      li{
+        display: inline-block;
+        margin-right: 35px;
+        &:last-child{
+          margin-right: 0;
+        }
+        a{
+          text-decoration: none;
+        }
+        span{
+          color: $backButtonColor;
+          margin-right: 10px;
+        }
+        p{
+          display: inline-block;
+          font-size: 15px;
+          font-weight: $fontWeightRegular;
+          color: $lightTextColor;
+          vertical-align: -webkit-baseline-middle;
+        }
+      }
+    }
+  }
+  a.back{
+    color: $backButtonColor;
+    font-size: 22px;
+    text-decoration: none;
+    span{
+      margin-right: 15px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .message-section{
+    max-width: 700px;
+    .message-container{
+      margin: 0 20px;
+      ul{
+        li{
+          span{
+            width: 20px;
+            display: inline-block;
+            text-align: center;
+          }
+        }
+      }
+    }
+    a.back{
+      margin-left: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .message-section{
+    ul{
+      li{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        a{
+          display: table-cell;
+        }
+        span{
+          float: left;
+          &:before{
+            vertical-align: middle;
+          }
+        }
+        p{
+          display: table-cell;
+        }
+      }
+    }
+  }  
+}

@@ -1,0 +1,573 @@
+.org-chart {
+  padding: 100px 0;
+  max-width: 750px;
+  margin: auto;
+  &.expand{
+    ul.hexagon-list.first{
+      transform: scale(1);
+      z-index: 99;
+      position: relative;
+      opacity: 1;
+    }
+    ul.hexagon-list.second{
+      opacity: 1;
+      transform: scale(1);
+    }
+    .hexagon-ceo{
+      transform: none;
+      .hex-text{
+        opacity: 1;
+      }
+      .toggle-icon{
+        background-color: $redColor;
+      }
+      .hexagon{
+        &:before{
+          border-bottom-color: $whiteColor;
+        }
+        &:after{
+          border-top-color: $whiteColor;
+        }
+      }
+    }
+  }
+  .hexagon-outline{
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .2)
+  }
+  .hexagon-outline,
+  .hexagon-border,
+  .hexagon{
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 122px;
+    height: 70px;
+    background-color: $borderColor;
+    position: relative;
+    text-align: center;
+    line-height: 70px;
+    vertical-align: middle;
+    &:before{
+      content: " ";
+      width: 0;
+      height: 0;
+      border-bottom: 35px solid $borderColor;
+      /*formula for border-bottom= width/1.73 and divide by 2*/
+      border-left: 61px solid transparent;
+      /*left border = width/ 2*/
+      border-right: 61px solid transparent;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+    }
+    &:after{
+      content: "";
+      width: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      border-top: 35px solid $borderColor;
+      border-left: 61px solid transparent;
+      border-right: 61px solid transparent;
+    }
+  }
+  .hexagon-border{
+    transform: scale(.97, .97);
+    background-color: $lightBorderColor;
+    z-index: 1;
+    &:before{
+      border-bottom-color: $lightBorderColor;
+    }
+    &:after{
+      border-top-color: $lightBorderColor;
+    }
+  }
+  .hexagon{
+    transform: scale(.9, .9);
+    background-color: $whiteColor;
+    z-index: 2;
+    &:before{
+      border-bottom-color: $whiteColor !important;
+      bottom: 99.3%;
+    }
+    &:after{
+      border-top-color: $whiteColor !important;
+      top: 99%;
+    }
+    .hex-icon{
+      vertical-align: middle;
+      height: 90%;
+    }
+  }
+  .hexagon-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    &.first{
+      flex-wrap: wrap-reverse;
+      transform: scale(0.1);
+      transform-origin: 50% 182%;
+      -webkit-transition: all 1000ms;
+      transition: all 1000ms;
+      opacity: 0;
+    }
+    &.second {
+      transform: scale(0.1);
+      transform-origin: 50% -120%;
+      opacity: 0;
+      -webkit-transition: all 1000ms;
+      transition: all 1000ms;
+    }
+    > li{
+      position: relative;
+      width: 20%;
+      text-align: center;
+      .sub-department {
+        display: block;
+        padding: 10px;
+        font-weight: $fontWeightRegular;
+        color: $blueColor;
+        text-align: inherit;
+        border-bottom: 1px solid $lightColor;
+        text-decoration: none;
+        font-size: 10px;
+        border-left: 2px solid transparent;
+        text-align: left;
+        -webkit-transition: all 1000ms;
+        transition: all 1000ms;
+      }
+      .sub-department:hover {
+        border-left: 2px solid $blueColor;
+        -webkit-transition: all 1000ms;
+        transition: all 1000ms;
+      }
+      .sub-department:last-child {
+        border-bottom: none;
+      }
+      .main-department{
+        position: initial;
+        .toggle-icon{
+          position: absolute;
+          top: 122px;
+          left: 0;
+          right: 0;
+          z-index: 10;
+          margin: auto;
+          width: 26px;
+          height: 26px;
+          line-height: 27px;
+          border-radius: 50%;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 12px;
+          background-color: $blueColor;
+          color: $whiteColor !important;
+          cursor: pointer;
+          -webkit-transition: all 1000ms;
+          transition: all 1000ms;
+          &:after{
+            display: none;
+          }
+        }
+        &.open{
+          &~.department{
+            -webkit-transition: all 500ms;
+            transition: all 500ms;
+            top: 78%;
+            opacity: 1;
+            z-index: 99;
+          }
+          .toggle-icon{
+            color: $blueColor !important;
+            background: $whiteColor;
+            -webkit-transition: all 500ms;
+            transition: all 500ms;
+            border: 1px solid $grayBorder;
+          }
+        }
+      }
+      .department{
+        border-radius: 3px;
+        top: 30%;
+        margin: 0px;
+        padding: 0px;
+        -webkit-transition: all 500ms;
+        transition: all 500ms;
+        opacity: 0;
+        position: absolute;
+        background: $whiteColor;
+        z-index: -1;
+        box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.14);
+        border: 1px solid $dropDownBorderColor;
+        &:before{
+          content: '';
+          height: 0;
+          border-left: 12px solid transparent;
+          border-right: 12px solid transparent;
+          border-bottom: 12px solid $whiteColor;
+          position: absolute;
+          top: -12px;
+          left: 41.5%;
+          margin: 0px auto;
+        }
+      }
+      .hex-text {
+        padding: 12px 0 8px 0;
+        font-size: 13px;
+        white-space: normal;
+        color: $textColor;
+        margin: 0;
+      }
+    }
+  }
+  .hexagon-ceo{
+    padding: 50px 0;
+    position: relative;
+    text-align: center;
+    transform: scale(1.5);
+    -webkit-transition: all 1000ms;
+    transition: all 1000ms;
+    z-index: 1;
+    .hexagon-outline,
+    .hexagon-border,
+    .hexagon{
+      margin-top: 48px;
+      margin-bottom: 48px;
+      width: 168px;
+      height: 98px;
+      /* formula for height= width/1.73*/
+      line-height: 70px;
+      &:before{
+        border-bottom: 48px solid $borderColor;
+        /*formula for border-bottom= width/1.73 and divide by 2*/
+        border-left: 84px solid transparent;
+        /*left border = width/ 2*/
+        border-right: 84px solid transparent;
+      }
+      &:after{
+        border-top: 48px solid $borderColor;
+        /*formula for border-bottom= width/1.73 and divide by 2*/
+        border-left: 84px solid transparent;
+        /*left border = width/ 2*/
+        border-right: 84px solid transparent;
+      }
+    }
+    .hexagon-border{
+      background-color: $blueColor;
+      cursor: pointer;
+      &:before{
+        border-bottom-color: $blueColor;
+      }
+      &:after{
+        border-top-color: $blueColor;
+      }
+      &:hover{
+        .tool-tip {
+          opacity: 1;
+          right: -155px;
+          top: -150px;
+          -webkit-transition: all 1000ms;
+          transition: all 1000ms;
+        }
+      }
+    }
+    .inner-hexagon {
+      position: relative;
+      width: 130px;
+      height: 75.06px;
+      margin: 37.53px auto;
+      background: url('../images/ceo.jpg') no-repeat;
+      background-size: auto 150.1111px;
+      background-position: center;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      &:after{
+        content: "";
+        position: absolute;
+        top: 0.0000px;
+        left: 0;
+        width: 130.0000px;
+        height: 75.0555px;
+        z-index: 2;
+        background: inherit;
+      }
+    }
+    .hexTop,
+    .hexBottom{
+      position: absolute;
+      z-index: 1;
+      width: 91.92px;
+      height: 91.92px;
+      overflow: hidden;
+      -webkit-transform: scaleY(0.5774) rotate(-45deg);
+      -ms-transform: scaleY(0.5774) rotate(-45deg);
+      transform: scaleY(0.5774) rotate(-45deg);
+      background: inherit;
+      left: 19.04px;
+      &:after{
+        content: "";
+        position: absolute;
+        width: 130.0000px;
+        height: 75.05553499465135px;
+        -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-37.5278px);
+        -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-37.5278px);
+        transform: rotate(45deg) scaleY(1.7321) translateY(-37.5278px);
+        -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        background: inherit;
+      }
+    }
+    .hexTop {
+      top: -45.9619px;
+      &:after{
+        background-position: center top;
+        position: absolute;
+        left: 0px;
+      }
+    }
+    .hexBottom{
+      bottom: -45.9619px;
+      &:after{
+        background-position: center bottom;
+        position: absolute;
+        left: 0px;
+      }
+    }
+    .tool-tip{
+      position: relative;
+      background: $whiteColor;
+      opacity: 0;
+      right: -90px;
+      top: -150px;
+      width: 280px;
+      padding: 15px;
+      box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.14);
+      border: 1px solid $dropDownBorderColor;
+      -webkit-transition: all 1000ms;
+      transition: all 1000ms;
+      text-align: left;
+      border-radius: 3px;
+      z-index: 1;
+      &:after, &:before{
+        right: 99.5%;
+        top: 45%;
+        transform: translateY(-55%);
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: transparent;
+        border-right-color: $whiteColor;
+        border-width: 15px;
+      }
+      .hexTop:after,
+      .hexBottom:after{
+        content: "";
+        position: absolute;
+        width: 50.0000px;
+        height: 28.86751345948129px;
+        -webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+        -ms-transform: rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+        transform: rotate(45deg) scaleY(1.7321) translateY(-14.4338px);
+        -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        transform-origin: 0 0;
+        background: inherit;
+      }
+      .inner-hexagon{
+        position: relative;
+        width: 50px;
+        height: 28.87px;
+        margin: 0px;
+        background: url('../images/ceo.jpg') no-repeat;
+        background-size: auto 57.7350px;
+        background-position: center;
+        top: 15px;
+        left: 0px;
+        display: inline-block;
+      }
+      .hexBottom, .hexTop{
+        position: absolute;
+        z-index: 1;
+        width: 35.36px;
+        height: 35.36px;
+        overflow: hidden;
+        -webkit-transform: scaleY(0.5774) rotate(-45deg);
+        -ms-transform: scaleY(0.5774) rotate(-45deg);
+        transform: scaleY(0.5774) rotate(-45deg);
+        background: inherit;
+        left: 7.32px;
+      }
+      .hexTop {
+        top: -17.6777px;
+      }
+      .hexTop:after {
+        background-position: center top;
+      }
+      .hexBottom {
+        bottom: -17.6777px;
+      }
+      .hexBottom:after {
+        background-position: center bottom;
+      }
+      .inner-hexagon:after {
+        content: "";
+        position: absolute;
+        top: 0.0000px;
+        left: 0;
+        width: 50.0000px;
+        height: 28.8675px;
+        z-index: 2;
+        background: inherit;
+      }
+      .name-designation {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      p{
+        line-height: 15px;
+        text-align: left;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      }
+      p.name{
+        font-size: 16px;
+        font-weight: $fontWeightSemiBold;
+        color: $darkBlueColor;
+      }
+      p.designation{
+        font-size: 14px;
+        color: $lightTextColor;
+      }
+      p.sector{
+        font-size: 15px;
+        font-weight: $fontWeightSemiBold;
+        color: $textColor;
+        margin-bottom: 10px;
+      }
+      p.email,
+      p.phone-number,
+      p.text {
+        font-size: 15px;
+        color: $lightTextColor;
+      }
+      hr {
+        margin-top: -5px;
+        border: 1px solid $rowColor;
+      }
+    }
+    .toggle-icon{
+      position: absolute;
+      top: 222px;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin: auto;
+      width: 26px;
+      height: 26px;
+      line-height: 25px;
+      border-radius: 50%;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 12px;
+      background-color: $blueColor;
+      color: $whiteColor !important;
+      cursor: pointer;
+      -webkit-transition: all 1000ms;
+      transition: all 1000ms;
+      border: 1px solid $whiteColor;
+    }
+    .hex-text {
+      color: $darkBlueColor;
+      font-weight: $fontWeightBold;
+      font-size: 17px;
+      opacity: 0;
+      -webkit-transition: all 1000ms;
+      transition: all 1000ms;      
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .hexagon-ceo{
+    transform: scale(1) !important;
+  }
+  .hexagon-list{
+    &.first{
+      transform-origin: 50% 188% !important;
+    }
+    &.second{
+      transform-origin: 50% -114% !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .hexagon-list{
+    &.first{
+      transform-origin: 50% 134% !important;
+    }
+    &.second{
+      transform-origin: 50% -46% !important;
+    }
+    > li{
+      width: 50% !important;
+      .department{
+        &:before{
+          left: 44% !important;
+        }
+      }
+      .main-department{
+        &.open~.department{
+          top: 86% !important;
+        }
+      }
+    }
+  }
+  .hexagon-ceo{
+    .tool-tip{
+      width: 300px !important;
+      right: 0px !important;
+      left: -67px !important;
+      top: -10px !important;
+      z-index: 999999 !important;
+      position: absolute !important;
+      &:before, &:after{
+        right: 0px !important;
+        left: 0px !important;
+        margin: 0px auto !important;
+        top: -28px !important;
+        transform: rotate(90deg) !important;
+      }
+    }
+    .hexagon-border{
+      &:hover{
+        .tool-tip{
+          top: 75px !important;
+        }
+      }
+    }
+    .hexagon-outline{
+      &:hover~.toggle-icon{
+        opacity: 0;
+        -webkit-transition: all 1000ms;
+        transition: all 1000ms;
+      }
+    } 
+  } 
+}
